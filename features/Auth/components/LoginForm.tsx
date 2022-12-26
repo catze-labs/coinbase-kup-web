@@ -1,20 +1,20 @@
 import { ComponentProps, Dispatch, SetStateAction, useState } from 'react'
-  import { useForm } from 'react-hook-form'
-  import { yupResolver } from '@hookform/resolvers/yup'
-  import loginSchema from '@/features/Auth/utils/loginFormSchema'
-  import TextInput from '@/components/TextInput'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import loginSchema from '@/features/Auth/utils/loginFormSchema'
+import TextInput from '@/components/TextInput'
 import Label from '@/components/Label'
 import Button from '@/components/Button'
 import Box from '@/components/Box'
 
-  export interface LoginFormProps extends ComponentProps<'div'> {
+export interface LoginFormProps extends ComponentProps<'div'> {
     onSubmitForm: (
       formData: Auth.Login.FormData,
       setIsSubmitting: Dispatch<SetStateAction<boolean>>,
     ) => void
-  }
+}
   
-  const LoginForm: React.FC<LoginFormProps> = ({ onSubmitForm }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ onSubmitForm }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const { register, handleSubmit } = useForm<Auth.Login.FormData>({
