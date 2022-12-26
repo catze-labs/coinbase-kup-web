@@ -7,12 +7,27 @@ import { useState } from 'react'
  * @example login, logout, refresh token, validate token, ...
  */
 export default function useAuthService() {
-    const loginWithEmailAddress = async (payload: Auth.Login.Payload) => {
-        const { data, status } = await Requester.post<Auth.Login.Result>(
-          '/Client/LoginWithEmailAddress',
-          payload,
-        )
-        return data
-      }
-    return { loginWithEmailAddress }
+  /**
+   * login with email and password
+   */
+  const loginWithEmailAddress = async (payload: Auth.Login.Payload) => {
+    const { data } = await Requester.post<Auth.Login.Result>(
+      '/Client/LoginWithEmailAddress',
+      payload,
+    )
+    return data
+  }
+
+  /**
+   * register
+   */
+  const registerPlayFabUser = async (payload: Auth.Signup.Payload) => {
+    const { data } = await Requester.post<Auth.Signup.Result>(
+      '/Client/RegisterPlayFabUser',
+      payload,
+    )
+    return data
+  }
+
+  return { loginWithEmailAddress, registerPlayFabUser }
 }    

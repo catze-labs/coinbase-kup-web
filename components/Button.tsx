@@ -13,9 +13,9 @@ const Button: React.FC<ButtonProps> = ({
   ...rest
 }) => {
   const variantClasses = {
-    primary: 'bg-blue-600 text-white',
+    primary: 'bg-blue-600 hover:bg-blue-500 text-white',
     secondary: 'bg-gray-300 text-gray-500',
-    ghost: 'bg-transparent text-gray-400',
+    ghost: 'bg-white hover:bg-gray-100 text-gray-400',
   }
 
   const handleClick = useCallback(
