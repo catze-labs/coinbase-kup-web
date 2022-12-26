@@ -1,28 +1,14 @@
-import "../styles/globals.css";
-import type { AppProps } from "next/app";
-import { RecoilRoot } from "recoil";
-import { QueryClient, QueryClientProvider } from "react-query";
+import '@/styles/globals.css'
+import type { AppProps } from 'next/app'
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: true,
-      retry: 1,
-      staleTime: 1000 * 5,
-    },
-  },
-});
+import { RecoilRoot } from 'recoil'
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <RecoilRoot>
-        <QueryClientProvider client={queryClient}>
-          <Component {...pageProps} />
-        </QueryClientProvider>
-      </RecoilRoot>
-    </>
-  );
+    <RecoilRoot>
+      <Component {...pageProps} />
+    </RecoilRoot>
+  )
 }
 
-export default App;
+export default App

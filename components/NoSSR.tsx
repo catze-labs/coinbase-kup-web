@@ -1,17 +1,24 @@
-import React, { PropsWithChildren, useEffect, useState } from "react";
+import React from 'react'
 
-const NoSSR: React.FC<PropsWithChildren> = ({ children }) => {
-  const [canRender, setCanRender] = useState(false);
+type NoSSRProps = {
+  children?: React.ReactNode
+}
 
-  useEffect(() => {
-    setCanRender(true);
-  }, []);
-
-  if (!canRender) {
-    return null;
+export class NoSSR extends React.Component<NoSSRProps> {
+  state = {
+    isClient: false,
   }
 
-  return <>{children}</>;
-};
+  componentDidMount() {
+    this.setState({
+      isClient: true,
+    })
+  }
 
-export default NoSSR;
+  render() {
+    const { isClient } = this.state
+    const { children } = this.props
+
+    return isClient ? children : false
+  }
+}
