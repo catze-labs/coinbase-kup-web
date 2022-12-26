@@ -1,4 +1,4 @@
-import { ComponentProps, Dispatch, SetStateAction, useState } from 'react'
+import { ComponentProps, Dispatch, SetStateAction, useState, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import loginSchema from '@/features/Auth/utils/loginFormSchema'
@@ -6,6 +6,7 @@ import TextInput from '@/components/TextInput'
 import Label from '@/components/Label'
 import Button from '@/components/Button'
 import Box from '@/components/Box'
+import { useRouter } from 'next/router'
 
 export interface LoginFormProps extends ComponentProps<'div'> {
     onSubmitForm: (
@@ -15,49 +16,55 @@ export interface LoginFormProps extends ComponentProps<'div'> {
 }
   
 const LoginForm: React.FC<LoginFormProps> = ({ onSubmitForm }) => {
-    const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter()
 
-    const { register, handleSubmit } = useForm<Auth.Login.FormData>({
-      resolver: yupResolver(loginSchema),
-    })
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const onSubmit = handleSubmit((data) => {
-      setIsSubmitting(true)
-      onSubmitForm(data, setIsSubmitting)
-    })
+  const { register, handleSubmit } = useForm<Auth.Login.FormData>({
+    resolver: yupResolver(loginSchema),
+  })
 
-    return (
-      <Box hasPadding>
-        <form className="flex flex-col gap-6" onSubmit={onSubmit}>
-          <div className="flex flex-col gap-1">
-            <Label htmlFor="email">Email</Label>
-            <TextInput
-              autoComplete="email"
-              type="email"
-              id="email"
-              {...register('Email')}
-            />
-          </div>
-          <div className="flex flex-col gap-1 ">
-            <Label htmlFor="password">Password</Label>
-            <TextInput
-              autoComplete="current-password"
-              type="password"
-              id="password"
-              {...register('Password')}
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <Button variant="primary" type="submit" loading={isSubmitting}>
-              Login
-            </Button>
+  const onSubmit = handleSubmit((data) => {
+    setIsSubmitting(true)
+    onSubmitForm(data, setIsSubmitting)
+  })
 
-            <Button variant="ghost" type="button" disabled>
-              Sign-up
-            </Button>
-          </div>
-        </form>
-      </Box>
+  const onClickSignUp = useCallback(() => {
+    router.push('/signup')
+  }, [])
+
+  return (
+    <Box hasBorder hasPadding>
+      <form className="flex flex-col gap-6" onSubmit={onSubmit}>
+        <div className="flex flex-col gap-1">
+          <Label htmlFor="email">Email</Label>
+          <TextInput
+            autoComplete="email"
+            type="email"
+            id="email"
+            {...register('Email')}
+          />
+        </div>
+        <div className="flex flex-col gap-1 ">
+          <Label htmlFor="password">Password</Label>
+          <TextInput
+            autoComplete="current-password"
+            type="password"
+            id="password"
+            {...register('Password')}
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <Button variant="primary" type="submit" loading={isSubmitting}>
+            Login
+          </Button>
+
+          <Button variant="ghost" type="button" onClick={onClickSignUp}>
+            Sign-up
+          </Button>
+        </div>
+      </form>
+    </Box>
   )
 }
 export default LoginForm
