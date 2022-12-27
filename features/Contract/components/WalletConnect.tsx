@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { CheckCircleIcon, WalletIcon } from '@heroicons/react/24/solid'
-import Button from '@/components/Buttton'
+import Button from '@/components/Button'
 import React, { useCallback, useEffect, useState } from 'react'
 import useKaikas from '../hooks/useKaikas'
 import useKlip from '../hooks/useKlip'

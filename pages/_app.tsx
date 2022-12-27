@@ -7,7 +7,6 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <Component {...pageProps} />
-      <div id="modal"></div>
     </RecoilRoot>
   )
 }
