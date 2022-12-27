@@ -12,6 +12,7 @@ import Hero from '../components/Hero'
 import WhatIsKup from '../components/WhatIsKup'
 import WhatWeHave from '../components/WhatWeHave'
 import WhyKup from '../components/WhyKup'
+import PlayGame from '../components/PlayGame'
 
 const Landing: React.FC = () => {
   const { modal, closeModal } = useModalStore()
@@ -27,6 +28,7 @@ const Landing: React.FC = () => {
         <WhyKup />
         <Architecture />
         <WhatWeHave />
+        <PlayGame />
 
         {modal.active && (
           <ModalPortal>

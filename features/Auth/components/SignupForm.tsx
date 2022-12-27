@@ -1,3 +1,4 @@
+import Box from '@/components/Box'
 import Button from '@/components/Button'
 import Label from '@/components/Label'
 import TextInput from '@/components/TextInput'
