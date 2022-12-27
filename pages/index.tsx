@@ -1,1 +1,1 @@
-export { default } from '@/features/Auth/view/LoginPage'
+export { default } from '@/features/Landing/views/Landing'

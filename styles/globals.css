@@ -1,11 +1,57 @@
+@import url('http://fonts.cdnfonts.com/css/dm-sans');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer utilities {
-    .flex-center {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .full-screen {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  @keyframes dropLine {
+    0% {
+      top: 0;
+      height: 0;
     }
+    50% {
+      top: 0;
+      height: 100%;
+    }
+    100% {
+      top: 100%;
+      height: 100%;
+    }
+  }
+
+  @keyframes pulleyUp {
+    0% {
+      transform: translate(0, 0);
+      rotate: -8deg;
+    }
+    20% {
+      transform: translate(-5%, -4%);
+      rotate: -3deg;
+    }
+    50% {
+      transform: translate(0, -16%);
+      rotate: -8deg;
+    }
+    80% {
+      transform: translate(-5%, -4%);
+      rotate: -3deg;
+    }
+    100% {
+      transform: translate(0, 0);
+      rotate: -8deg;
+    }
+  }
 }

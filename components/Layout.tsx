@@ -1,11 +1,11 @@
 import { PropsWithChildren } from 'react'
+import NavBar from './Navbar'
 
 const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <div className="bg-gray-100 w-full min-h-screen flex justify-center items-center">
-      <div className="bg-gray-100 w-full min-h-screen flex-center">
-        {children}
-      </div>
+    <div>
+      <NavBar />
+      <div>{children}</div>
     </div>
   )
 }
