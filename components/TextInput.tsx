@@ -9,7 +9,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       <input
         ref={ref}
         type={type || 'text'}
-        className="border border-gray-300 rounded-sm px-2 py-1"
+        className="border border-gray-300 rounded-sm w-full h-10 px-3 py-2 text-base font-normal"
         {...rest}
       />
     )

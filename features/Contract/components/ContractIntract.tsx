@@ -1,4 +1,4 @@
-import Button from '@/components/Buttton'
+import Button from '@/components/Button'
 import useModalStore from '@/store/useModalStore'
 import axios from 'axios'
 import { useEffect, useState } from 'react'

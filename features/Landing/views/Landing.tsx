@@ -1,24 +1,42 @@
-import Layout from '@/components/Layout'
-import React, { useEffect } from 'react'
-import FullPageScroll from '../components/FullPageScroll'
+import Head from 'next/head'
 
-import Architecture from '../components/sections/Architecture'
-import Hero from '../components/sections/Hero'
-import WhatIsKup from '../components/sections/WhatIsKup'
-import WhatWeHave from '../components/sections/WhatWeHave'
-import WhyKup from '../components/sections/WhyKup'
+import Layout from '@/components/Layout'
+import Modal from '@/components/Modal'
+import ModalPortal from '@/components/ModalPortal'
+import { NoSSR } from '@/components/NoSSR'
+import useModalStore from '@/store/useModalStore'
+import React from 'react'
+
+import Architecture from '../components/Architecture'
+import Hero from '../components/Hero'
+import WhatIsKup from '../components/WhatIsKup'
+import WhatWeHave from '../components/WhatWeHave'
+import WhyKup from '../components/WhyKup'
 
 const Landing: React.FC = () => {
-  useEffect(() => {}, [])
+  const { modal, closeModal } = useModalStore()
 
   return (
-    <Layout>
-      <Hero />
-      <WhatIsKup />
-      <WhyKup />
-      <Architecture />
-      <WhatWeHave />
-    </Layout>
+    <NoSSR>
+      <Head>
+        <title>KUP</title>
+      </Head>
+      <Layout>
+        <Hero />
+        <WhatIsKup />
+        <WhyKup />
+        <Architecture />
+        <WhatWeHave />
+
+        {modal.active && (
+          <ModalPortal>
+            <Modal onClose={closeModal} title={modal?.title}>
+              {modal?.component}
+            </Modal>
+          </ModalPortal>
+        )}
+      </Layout>
+    </NoSSR>
   )
 }
 

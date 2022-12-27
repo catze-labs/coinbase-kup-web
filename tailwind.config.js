@@ -23,7 +23,7 @@ module.exports = {
           default: '#4F473B',
           dark: '#27231D',
           light: '#A7A39D',
-          ligtest: '#EDECEB',
+          lightest: '#EDECEB',
         },
         tequila: {
           light: '#E35500',
