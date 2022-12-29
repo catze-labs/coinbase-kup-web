@@ -23,7 +23,7 @@ const PlayGame = () => {
         'lg:flex-row lg:pt-nav-h lg:gap-[225px]',
       ])}
     >
-      <div className="flex flex-col gap-10 rounded-lg bg-[rgba(255,255,255,0.7)] p-6 min-w-[360px]">
+      <div className="flex flex-col gap-10 rounded-lg bg-[rgba(255,255,255,0.6)] px-6 py-12 min-w-[360px]">
         <div className="text-center w-full text-main-default font-bold">
           <p className="text-base mb-4">Download KUP Example Game</p>
           <h2 className="text-3xl">Chop Chop</h2>
@@ -38,7 +38,7 @@ const PlayGame = () => {
             <>
               <a
                 rel="noopener noreferrer"
-                className="flex gap-2 rounded p-2 bg-main-default"
+                className="flex gap-2 rounded py-2 px-4 bg-main-default"
                 href="https://kup.fra1.digitaloceanspaces.com/win/unity-39-develop-chop-chop-kup-main-win-7.zip"
               >
                 <img
@@ -58,7 +58,7 @@ const PlayGame = () => {
               </a>
               <a
                 rel="noopener noreferrer"
-                className="flex gap-2 rounded p-2 bg-main-default"
+                className="flex gap-2 rounded py-2 px-4 bg-main-default"
                 href="https://kup.fra1.digitaloceanspaces.com/mac/unity-39-develop-chop-chop-kup-main-mac-7.zip"
               >
                 <img

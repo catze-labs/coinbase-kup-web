@@ -2,12 +2,12 @@
 import clsx from 'clsx'
 import React, { ComponentProps } from 'react'
 
-const VerticalLine: React.FC = React.memo(
+const HorizontalLine: React.FC = React.memo(
   () => {
     return (
-      <div className="w-0.5 h-6 rotate-90 lg:rotate-0 lg:h-12 relative overflow-hidden">
+      <div className="w-3 h-5 -rotate-90 relative overflow-hidden">
         <hr
-          className="w-0.5 bg-orange absolute top-0 left-0"
+          className="w-3 h-5 bg-orange absolute top-0 left-0"
           style={{ animation: 'dropLine 1.4s ease-in-out infinite' }}
         />
       </div>
@@ -15,7 +15,7 @@ const VerticalLine: React.FC = React.memo(
   },
   () => true,
 )
-VerticalLine.displayName = 'VerticalLine'
+HorizontalLine.displayName = 'HorizontalLine'
 
 const WhatIsKup: React.FC<ComponentProps<'div'>> = () => {
   return (
@@ -23,66 +23,61 @@ const WhatIsKup: React.FC<ComponentProps<'div'>> = () => {
       id="whatiskup"
       className={clsx([
         'full-screen flex-center bg-main-lightest',
-        'flex-col pt-nav-mobile gap-16 px-4',
-        'lg:flex-row lg:pt-nav-h lg:gap-[225px]',
+        'flex-col pt-nav-mobile px-4',
+        'lg:flex-row lg:pt-nav-h',
       ])}
     >
-      <div
-        className={clsx([
-          `flex gap-8 lg:gap-2.5 items-center flex-row-reverse lg:flex-col`,
-        ])}
-      >
-        <figure className="w-full">
-          <img
-            src="/landing/logo-klaytn.png"
-            alt="Klaytn"
-            width={186}
-            height={56}
-            className="h-6 w-auto lg:h-[56px]"
-          />
-        </figure>
-
-        <VerticalLine />
-
-        <figure className="w-full">
-          <img
-            src="/landing/logo-unity.png"
-            alt="Unity"
-            width={164}
-            height={60}
-            className="h-6 w-auto lg:h-[60px]"
-          />
-        </figure>
-
-        <VerticalLine />
-
-        <figure className="w-full">
-          <img
-            src="/landing/logo-playfab.png"
-            alt="Unity"
-            width={206}
-            height={60}
-            className="h-6 w-auto lg:h-[60px]"
-          />
-        </figure>
+      <div className="lg:-mr-[70px]">
+        <img 
+          src="/landing/chain-balls.png"
+          className="mix-blend-darken"
+        />
       </div>
-      <div className="w-full lg:max-w-[470px]">
+      <div className="w-full lg:max-w-[470px] lg:mt-20">
         <h2 className="text-3xl lg:text-5xl font-bold text-main-default mb-4 lg:mb-7 tracking-tighter">
           What is KUP?
         </h2>
-        <p className="text-sm lg:text-base font-normal leading-5">
-          KUP stands for Klaytn, Unity, and Playfab.
-          <br />
-          Klaytn is a metaverse platform solution. Unity is a 3D/2D game engine. And Playfab is a backend platform for live games, also a part of Microsoft.
-          <br />
-          it is a connection between Unity, Playfab and Klaytn to manage data
-          while interacting within the metaverse. The partnership secures the
-          users data ownership and preservation by processing important data
-          with Klaytn blockchain.
-          <br />
-          KUP helps Unity developers focus on the domain they are confident in.
-          By utilizing KUP, they help build an easily accessible metaverse.
+        <p className="text-sm lg:text-base font-normal leading-5 text-main-default">
+          KUP stands for Klaytn, Unity, and Playfab. <br/>
+          It is a connection between Unity, Playfab and Klaytn to manage data while interacting within the metaverse.<br/>
+          The partnership secures the users data ownership and preservation by processing important data with Klaytn blockchain. <br/>
+          KUP helps Unity developers focus on the domain they are confident in. By utilizing KUP, they help build an easily accessible metaverse.
         </p>
+        <div className="flex max-w-[300px] mx-4 gap-4 mt-5 lg:max-w-[470px] lg:gap-4 lg:mx-0 items-center lg:mt-[51px] lg:-mr-4">
+          <figure className="w-full">
+            <img
+              src="/landing/logo-klaytn.png"
+              alt="Klaytn"
+              width={130}
+              height={40}
+              className="h-6 w-auto lg:h-[40px]"
+            />
+          </figure>
+
+          <HorizontalLine />
+
+          <figure className="w-full">
+            <img
+              src="/landing/logo-unity.png"
+              alt="Unity"
+              width={110}
+              height={40}
+              className="h-6 w-auto lg:h-[40px] m-auto"
+            />
+          </figure>
+
+          <HorizontalLine />
+
+          <figure className="w-full">
+            <img
+              src="/landing/logo-playfab.png"
+              alt="Unity"
+              width={135}
+              height={40}
+              className="h-6 w-auto lg:h-[40px]"
+            />
+          </figure>
+        </div>
       </div>
     </article>
   )

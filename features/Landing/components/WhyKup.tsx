@@ -1,8 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
+import Spline from '@splinetool/react-spline'
 import clsx from 'clsx'
-import { ComponentProps } from 'react'
+import { ComponentProps, useState } from 'react'
+import { useWindowSize } from 'react-use'
+
+const BREAK_POINT = 800
 
 const WhyKup: React.FC<ComponentProps<'article'>> = () => {
+  const { width } = useWindowSize()
+  const [loaded, setLoaded] = useState<boolean>(false)
+
   return (
     <article
       id="whykup"
@@ -15,55 +22,72 @@ const WhyKup: React.FC<ComponentProps<'article'>> = () => {
         <h2 className="text-white tracking-tighter text-3xl lg:text-5xl font-bold mb-4 lg:mb-7 lg:text-right">
           Why KUP?
         </h2>
-        <p className="text-white text-sm lg:text-base leading-5 lg:text-right">
+        <p className="text-white text-sm lg:text-base leading-5 lg:text-right tracking-tight">
           For a metaverse to succeed, it must provide as much content as
           possible so that users can enjoy content seamlessly and without much
-          repetition.
-          <br />
-          It is cumbersome for content providers (Unity developers) to work in a
-          domain that they have little to no practice in. In short, KUP helps
-          content providers build a metaverse with ease, even if they are not as
-          skilled in other areas. By doing so, they have more time to work on
-          the quality of the content itself.
+          repetition. It is cumbersome for content providers (Unity developers)
+          to work in a domain that they have little to no practice in. In short,
+          KUP helps content providers build a metaverse with ease, even if they
+          are not as skilled in other areas. By doing so, they have more time to
+          work on the quality of the content itself.
         </p>
       </div>
       <div
-        role="image"
-        className="relative order-1 flex-0 w-[232px] h-[232px] lg:w-[434px] lg:h-[464px]"
+        className="order-1 lg:order-2 relative"
+        style={{
+          width: width > BREAK_POINT ? 530 : 371,
+          height: width > BREAK_POINT ? 600 : 420,
+        }}
       >
+        <Spline
+          scene="https://prod.spline.design/GDvfs1L9lPNpgxgy/scene.splinecode"
+          style={{
+            position: 'absolute',
+            display: 'block',
+            top: 0,
+            left: 0,
+            zoom: width > BREAK_POINT ? 1 : 1 / 1.45,
+            pointerEvents: 'none',
+          }}
+          onLoad={(app) => {
+            setLoaded(true)
+          }}
+        />
+        <span
+          className="text-sm text-yellow block font-bold text-center w-[80px] h-[34px] tracking-tight"
+          style={{
+            display: 'block',
+            position: 'absolute',
+            textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8)',
+            transform: 'rotate(-7deg)',
+            top: width > 800 ? 250 : 170,
+            left: width > 800 ? 260 : 170,
+          }}
+        >
+          Metaverse <br />
+          Hitch hikers
+        </span>
+        <span
+          className="text-xl text-yellow block font-bold text-center tracking-tight"
+          style={{
+            display: 'block',
+            position: 'absolute',
+            textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8)',
+            bottom: width > BREAK_POINT ? 80 : 50,
+            left: width > BREAK_POINT ? 170 : 90,
+          }}
+        >
+          Metaverse Hitch hikers
+        </span>
         <img
           src="/landing/pulley.png"
           alt="pulley"
-          width={321}
-          height={127}
-          className="absolute z-20 top-0 left-0 w-[160px] lg:w-[321px] lg:h-[127px]"
-        />
-
-        <img
-          src="/landing/logo-klaytn-light.svg"
-          alt="Klaytn"
-          width={140}
-          height={42}
-          className="absolute top-20 left-16 lg:top-40 lg:left-32 w-[70px] lg:w-[140px] lg:h-[42px]"
-        />
-
-        <img
-          src="/landing/swing.svg"
-          alt="Klaytn"
-          className="absolute top-12 left-28 lg:top-24 lg:left-56 z-10 w-[82px] lg:w-[163px] lg:h-[235px]"
-          width={163}
-          height={235}
+          className="absolute top-0 left-0 w-full h-full"
           style={{
-            animation: 'pulleyUp 6s ease-in-out infinite',
+            opacity: loaded ? 0 : 1,
           }}
-        />
-
-        <img
-          src="/landing/cloud.svg"
-          alt="cloud"
-          width={380}
-          height={148}
-          className="absolute bottom-0 right-0 z-0 animate-buoyancy-1 w-[190px] lg:w-[380px] lg:h-[148px]"
+          width={530}
+          height={600}
         />
       </div>
     </article>

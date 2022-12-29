@@ -51,9 +51,9 @@ const Architecture: React.FC<ComponentProps<'div'>> = () => {
         <img
           src="/landing/logo-cup-arch.svg"
           alt="cup"
-          width={205}
-          height={160}
-          className="mt-4 lg:mt-[74px] w-[102px] lg:w-[205px] lg:h-[160px]"
+          width={340}
+          height={300}
+          className="mt-4 lg:mt-[74px] w-[150px] lg:w-[340px] lg:h-[300px]"
         />
       </div>
     </article>
