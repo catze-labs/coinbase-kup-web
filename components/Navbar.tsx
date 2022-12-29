@@ -50,7 +50,7 @@ const NavBar: React.FC = () => {
               </li>
             </ul>
             <button
-              className="px-4 lg:w-[180px] h-[50px] bg-orange rounded flex-center"
+              className="px-4 lg:w-[180px] h-[50px] bg-white rounded-xl flex-center border border-orange"
               onClick={() =>
                 openModal({
                   title: 'Sign In',
@@ -58,9 +58,9 @@ const NavBar: React.FC = () => {
                 })
               }
             >
-              <span className="text-white text-base font-bold leading-none">
-                wallet <br className="lg:hidden" />
-                connect
+              <span className="text-orange text-base font-bold leading-none">
+                Connect <br className="lg:hidden" />
+                Wallet
               </span>
             </button>
           </div>

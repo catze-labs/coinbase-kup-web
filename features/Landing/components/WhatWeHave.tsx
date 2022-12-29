@@ -42,7 +42,7 @@ const WhatWeHave: React.FC<ComponentProps<'div'>> = () => {
           <img
             src="/landing/troublepunk.png"
             alt="troublepunk"
-            width={266}
+            width={265}
             height={400}
             className="rotate-12"
           />
