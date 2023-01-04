@@ -51,33 +51,35 @@ const SignupForm: React.FC = () => {
   })
 
   return (
-    <form className="flex flex-col gap-6" onSubmit={onSubmit}>
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="email">Email</Label>
-        <TextInput type="email" id="email" {...register('Email')} />
-      </div>
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="password">Password</Label>
-        <TextInput type="password" id="password" {...register('Password')} />
-      </div>
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="name">Name</Label>
-        <TextInput type="text" id="name" {...register('DisplayName')} />
-      </div>
-      <div className="flex flex-col gap-2">
-        <Button type="submit" loading={isSubmitting}>
-          Submit
-        </Button>
-        <Button
-          type="button"
-          variant="ghost"
-          onClick={handleClickSignin}
-          loading={isSubmitting}
-        >
-          Sign in
-        </Button>
-      </div>
-    </form>
+    <>
+      <form className="flex flex-col gap-6" onSubmit={onSubmit}>
+        <div className="flex flex-col gap-1">
+          <Label htmlFor="email">Email</Label>
+          <TextInput type="email" id="email" {...register('Email')} />
+        </div>
+        <div className="flex flex-col gap-1">
+          <Label htmlFor="password">Password</Label>
+          <TextInput type="password" id="password" {...register('Password')} />
+        </div>
+        <div className="flex flex-col gap-1">
+          <Label htmlFor="name">Name</Label>
+          <TextInput type="text" id="name" {...register('DisplayName')} />
+        </div>
+        <div className="flex flex-col gap-2">
+          <Button type="submit" loading={isSubmitting}>
+            Submit
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            onClick={handleClickSignin}
+            loading={isSubmitting}
+          >
+            Sign in
+          </Button>
+        </div>
+      </form>
+    </>
   )
 }
 export default SignupForm

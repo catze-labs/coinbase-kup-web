@@ -8,9 +8,10 @@ import { NoSSR } from './NoSSR'
 
 const NavBar: React.FC = () => {
   const { openModal } = useModalStore();
+  // get saved session ticket data
+  const sessionTicket = localStorage.getItem('SessionTicket');
+
   const handleClick = () => {
-    // get saved session ticket data
-    const sessionTicket = localStorage.getItem('SessionTicket');
     if (sessionTicket !== null) {
       openModal({
         title: 'Wallet',
@@ -70,8 +71,12 @@ const NavBar: React.FC = () => {
               onClick={handleClick}
             >
               <span className="text-orange text-base font-bold leading-none">
-                Connect <br className="lg:hidden" />
-                Wallet
+                {
+                  sessionTicket ?
+                  <>Connect <br className="lg:hidden" /> Wallet</>
+                  :
+                  <>Sign <br className="lg:hidden" /> In</>
+                }
               </span>
             </button>
           </div>
