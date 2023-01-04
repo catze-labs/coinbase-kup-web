@@ -6,7 +6,7 @@ import CoinbaseWalletSDK from'@coinbase/wallet-sdk'
 export default function useCoinbase() {
   const APP_NAME = 'KUP'
 
-  const APP_LOGO_URL = ''
+  const APP_LOGO_URL = 'https://coinbase-kup-web.vercel.app/landing/logo-cup.svg'
 
   const DEFAULT_ETH_JSONRPC_URL = 'https://mainnet.infura.io/v3/fcb656a7b4d14c9f9b0803a5d7475877'
 
@@ -33,6 +33,8 @@ export default function useCoinbase() {
     if (window?.ethereum) {
       const res: any = await ethereum.request({ method: 'eth_requestAccounts' });
       setSelectedAddress(res[0]);
+    } else {
+      ethereum.enable();
     }
   }
   return {
