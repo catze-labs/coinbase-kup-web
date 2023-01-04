@@ -1,12 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
 import LoginForm from '@/features/Auth/components/LoginForm'
+import WalletConnect from '@/features/Contract/components/WalletConnect'
 import useModalStore from '@/store/useModalStore'
 import Link from 'next/link'
 import React from 'react'
 import { NoSSR } from './NoSSR'
 
 const NavBar: React.FC = () => {
-  const { openModal } = useModalStore()
+  const { openModal } = useModalStore();
+  const handleClick = () => {
+    // get saved session ticket data
+    const sessionTicket = localStorage.getItem('SessionTicket');
+    if (sessionTicket !== null) {
+      openModal({
+        title: 'Wallet',
+        component: <WalletConnect />,
+      })
+    } else {
+      openModal({
+        title: 'Sign In',
+        component: <LoginForm />,
+      })
+    }
+  };
 
   return (
     <NoSSR>
@@ -51,12 +67,7 @@ const NavBar: React.FC = () => {
             </ul>
             <button
               className="px-4 lg:w-[180px] h-[50px] bg-white rounded-xl flex-center border border-orange"
-              onClick={() =>
-                openModal({
-                  title: 'Sign In',
-                  component: <LoginForm />,
-                })
-              }
+              onClick={handleClick}
             >
               <span className="text-orange text-base font-bold leading-none">
                 Connect <br className="lg:hidden" />
