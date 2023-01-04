@@ -254,6 +254,7 @@ const WalletConnect: React.FC = () => {
               if (confirmedWalletAddress()) {
                 setSelectedWalletType(null)
               } else {
+                localStorage.removeItem('SessionTicket'); // log out
                 openModal({
                   title: 'Sign in',
                   component: <LoginForm />,
@@ -261,7 +262,7 @@ const WalletConnect: React.FC = () => {
               }
             }}
           >
-            Go Back
+            Log Out
           </Button>
         )}
       </div>
