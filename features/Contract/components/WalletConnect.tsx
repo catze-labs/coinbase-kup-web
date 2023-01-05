@@ -136,6 +136,33 @@ const WalletConnect: React.FC = () => {
           ) : (
             <>
               <Header />
+              <div className="flex flex-col gap-1">
+                  <Button
+                    variant="gray"
+                    className={clsx([
+                      `font-normal gap-2`,
+                      !isCoinbaseSupported &&
+                        'border border-tequila-light cursor-not-allowed grayscale',
+                    ])}
+                    onClick={() => {
+                      setSelectedWalletType(WalletType.Coinbase)
+                      loginCoinbase()
+                    }}
+                  >
+                    <img
+                      src="/wallets/coinbase.png"
+                      width={20}
+                      height={20}
+                      alt="coinbase"
+                    />
+                    <span className="w-20">Coinbase</span>
+                  </Button>
+                  {!isCoinbaseSupported && (
+                    <p className="text-xs text-tequila-light">
+                      Coinbase wallet is not installed.
+                    </p>
+                  )}
+              </div>
               <div className="mt-2 flex flex-col gap-2">
                 <div className="flex flex-col gap-1">
                   <Button
@@ -212,34 +239,6 @@ const WalletConnect: React.FC = () => {
                   {!isKlipSupported && (
                     <p className="text-xs text-tequila-light">
                       Klip is only supported on mobile
-                    </p>
-                  )}
-                </div>
-
-                <div className="flex flex-col gap-1">
-                  <Button
-                    variant="gray"
-                    className={clsx([
-                      `font-normal gap-2`,
-                      !isCoinbaseSupported &&
-                        'border border-tequila-light cursor-not-allowed grayscale',
-                    ])}
-                    onClick={() => {
-                      setSelectedWalletType(WalletType.Coinbase)
-                      loginCoinbase()
-                    }}
-                  >
-                    <img
-                      src="/wallets/coinbase.png"
-                      width={20}
-                      height={20}
-                      alt="coinbase"
-                    />
-                    <span className="w-20">Coinbase</span>
-                  </Button>
-                  {!isCoinbaseSupported && (
-                    <p className="text-xs text-tequila-light">
-                      Coinbase wallet is not installed.
                     </p>
                   )}
                 </div>
