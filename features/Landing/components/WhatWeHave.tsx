@@ -37,22 +37,21 @@ const WhatWeHave: React.FC<ComponentProps<'div'>> = () => {
           </a>
         </div>
       </div>
-      <div className="z-10 relative w-[308px]">
+      <div className="z-10 relative w-[438px]">
         <div className="w-full flex justify-end items-start animate-buoyancy-1">
           <img
             src="/landing/troublepunk.png"
             alt="troublepunk"
-            width={265}
-            height={400}
-            className="rotate-12"
+            width={438}
+            height={562}
           />
         </div>
 
         <img
-          className="absolute -bottom-0 left-0 translate-y-full"
+          className="absolute bottom-20 left-0 translate-y-full"
           src="/landing/card-shadow.svg"
           alt="shadow"
-          width={308}
+          width={380}
           height={63}
         />
       </div>
