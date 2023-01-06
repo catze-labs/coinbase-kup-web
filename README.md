@@ -1,4 +1,4 @@
-![KUP](https://user-images.githubusercontent.com/65520261/210939991-ad21f7f3-d067-4a4d-9b06-8b2d0e6e9ee6.png)
+![KUP_logo](https://user-images.githubusercontent.com/65520261/210942893-ab370674-c7ad-41fc-b08f-c3e6dcf55b43.png)
 
 # coinbase-kup-web
 KUP stands for Klaytn, Unity, and Playfab. It is a connection between Unity, Playfab and Klaytn to manage data while interacting within the metaverse. The partnership secures the users data ownership and preservation by processing important data with Klaytn blockchain. KUP helps Unity developers focus on the domain they are confident in. By utilizing KUP, they help build an easily accessible metaverse.
