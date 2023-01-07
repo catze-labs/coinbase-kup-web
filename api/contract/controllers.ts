@@ -1,7 +1,8 @@
+import axios from 'axios'
 import Caver from 'caver-js'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { Blob } from 'nft.storage'
-import abi from './abi'
+import { ftAbi, nftAbi, sbtAbi } from './abi'
 import * as contractService from './services'
 
 export type PostPayload = {
@@ -45,22 +46,68 @@ export async function ensureAttackAmount(
       )
       caver.wallet.add(key)
 
-      const contract = new caver.contract(abi, process.env.CONTRACT_ADDRESS)
+      // estimate gasPrice
+      const { data: gasPrice } = await axios.get<{
+        result: string
+      }>('https://api.baobab.klaytn.net:8651', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data: {
+          jsonrpc: '2.0',
+          method: 'klay_gasPrice',
+          params: [],
+          id: 1,
+        },
+      })
 
-      const tx = await contract.methods
-        .ensureAttackAmount(
-          address,
-          // key.address,
-          uri,
-        )
+      const effectiveGasPrice = caver.utils.hexToNumber(gasPrice.result)
+
+      const ftContract = new caver.contract(
+        ftAbi,
+        process.env.KUPFT_CONTRACT_ADDRESS,
+      )
+
+      const ftTx = await ftContract.methods.ensureAttackAmount(address).send({
+        from: key.address,
+        // gasPrice: '75000000000',
+        gasPrice: effectiveGasPrice.toString(),
+        gas: 1000000000,
+      })
+
+      const nftContract = new caver.contract(
+        nftAbi,
+        process.env.KUPNFT_CONTRACT_ADDRESS,
+      )
+
+      const nftTx = await nftContract.methods
+        .ensureAttackAmount(address, uri)
         .send({
-          // from: address,
           from: key.address,
-          gasPrice: '75000000000',
+          // gasPrice: '75000000000',
+          gasPrice: effectiveGasPrice.toString(),
           gas: 1000000,
         })
 
-      res.status(200).json(tx)
+      const sbtContract = new caver.contract(
+        sbtAbi,
+        process.env.KUPSBT_CONTRACT_ADDRESS,
+      )
+
+      const sbtTx = await sbtContract.methods
+        .ensureAttackAmount(address, uri)
+        .send({
+          from: key.address,
+          // gasPrice: '75000000000',
+          gasPrice: effectiveGasPrice.toString(),
+          gas: 1000000,
+        })
+
+      res.status(200).json({
+        ft: ftTx.transactionHash,
+        nft: nftTx.transactionHash,
+        sbt: sbtTx.transactionHash,
+      })
     } catch (error: any) {
       console.log(error)
       res.status(500).json({ error: error.message })

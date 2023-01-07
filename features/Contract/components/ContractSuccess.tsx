@@ -3,9 +3,13 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 
 const ContractSuccess: React.FC<{
-  txHash: string
+  txs: {
+    ft: string
+    nft: string
+    sbt: string
+  }
   ipnft: string
-}> = ({ txHash, ipnft }) => {
+}> = ({ txs, ipnft }) => {
   const [nftImageUrl, setNftImageUrl] = useState<string | null>(null)
   useEffect(() => {
     axios
@@ -36,14 +40,33 @@ const ContractSuccess: React.FC<{
         {nftImageUrl && <img src={nftImageUrl} alt="nft" />}
       </div>
 
-      <a
-        className="w-full text-center px-4 py-2 text-white bg-orange rounded"
-        href={`https://baobab.scope.klaytn.com/tx/${txHash}`}
-        rel="noreferrer"
-        target="_blank"
-      >
-        Transaction Info
-      </a>
+      <div className="flex flex-col gap-2 w-full">
+        <a
+          className="w-full text-center px-4 py-2 text-white bg-orange rounded"
+          href={`https://baobab.scope.klaytn.com/tx/${txs.ft}`}
+          rel="noreferrer"
+          target="_blank"
+        >
+          FT Transaction Info
+        </a>
+        <a
+          className="w-full text-center px-4 py-2 text-white bg-orange rounded"
+          href={`https://baobab.scope.klaytn.com/tx/${txs.nft}`}
+          rel="noreferrer"
+          target="_blank"
+        >
+          NFT Transaction Info
+        </a>
+
+        <a
+          className="w-full text-center px-4 py-2 text-white bg-orange rounded"
+          href={`https://baobab.scope.klaytn.com/tx/${txs.sbt}`}
+          rel="noreferrer"
+          target="_blank"
+        >
+          SBT Transaction Info
+        </a>
+      </div>
     </div>
   )
 }

@@ -37,12 +37,7 @@ const ContractInteract: React.FC<{
             status === 200 &&
               openModal({
                 title: 'Contract',
-                component: (
-                  <ContractSuccess
-                    txHash={data.transactionHash}
-                    ipnft={ipnft}
-                  />
-                ),
+                component: <ContractSuccess txs={data} ipnft={ipnft} />,
               })
             setLoading(false)
           })
