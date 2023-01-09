@@ -1,15 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 import LoginForm from '@/features/Auth/components/LoginForm'
+import ContractInteract from '@/features/Contract/components/ContractIntract'
 import WalletConnect from '@/features/Contract/components/WalletConnect'
+import useAccount from '@/store/useAccount'
 import useModalStore from '@/store/useModalStore'
 import Link from 'next/link'
 import React from 'react'
 import { NoSSR } from './NoSSR'
 
 const NavBar: React.FC = () => {
-  const { openModal } = useModalStore();
+  const { openModal } = useModalStore()
+  const { account } = useAccount()
+
   // get saved session ticket data
-  const sessionTicket = localStorage.getItem('SessionTicket');
+  const sessionTicket = localStorage.getItem('SessionTicket')
 
   const handleClick = () => {
     if (sessionTicket !== null) {
@@ -17,13 +21,18 @@ const NavBar: React.FC = () => {
         title: 'Wallet',
         component: <WalletConnect />,
       })
+    } else if (account) {
+      openModal({
+        title: 'Contract',
+        component: <ContractInteract address={account} />,
+      })
     } else {
       openModal({
         title: 'Sign In',
         component: <LoginForm />,
       })
     }
-  };
+  }
 
   return (
     <NoSSR>
@@ -71,12 +80,19 @@ const NavBar: React.FC = () => {
               onClick={handleClick}
             >
               <span className="text-orange text-base font-bold leading-none">
-                {
-                  sessionTicket ?
-                  <>Connect <br className="lg:hidden" /> Wallet</>
-                  :
-                  <>Sign <br className="lg:hidden" /> In</>
-                }
+                {!sessionTicket ? (
+                  <>
+                    Sign <br className="lg:hidden" /> In
+                  </>
+                ) : account ? (
+                  <>
+                    {account.slice(0, 6)}...{account.slice(-4)}
+                  </>
+                ) : (
+                  <>
+                    Connect <br className="lg:hidden" /> Wallet
+                  </>
+                )}
               </span>
             </button>
           </div>
